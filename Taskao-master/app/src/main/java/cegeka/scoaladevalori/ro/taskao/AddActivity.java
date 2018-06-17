@@ -33,8 +33,9 @@ public class AddActivity extends AppCompatActivity {
     private Button btnAddActivityToList;
     private FirebaseAuth firebaseAuth;
     private FirebaseUser firebaseUser;
-    private DatabaseReference mDatabase;
+    public DatabaseReference mDatabase;
     private String mUserId;
+    private String mActivityId;
 
 
 
@@ -76,14 +77,17 @@ public class AddActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (validate()) {
-
-                    mDatabase.child(mUserId).child("tasks").push().child("task name").setValue(titleActivity.getText().toString());
+                    String mGroupId = mDatabase.push().getKey();
+                    mDatabase.child(mUserId).child("tasks").child(mGroupId).child("task name").setValue(titleActivity.getText().toString());
+                    mDatabase.child(mUserId).child("tasks").child(mGroupId).child("task desc").setValue(descriptionActivity.getText().toString());
                     titleActivity.setText("");
+                    descriptionActivity.setText("");
 
 
                     mDatabase.child("users");
                     mDatabase.child(mUserId);
                     mDatabase.child("items");
+
 
                     final ListView listView = (ListView) findViewById(R.id.listView);
                     final ArrayAdapter<String> adapter = new ArrayAdapter<>(AddActivity.this, android.R.layout.simple_list_item_1, android.R.id.text1);
