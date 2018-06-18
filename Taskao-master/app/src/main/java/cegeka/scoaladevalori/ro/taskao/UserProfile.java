@@ -1,13 +1,10 @@
 package cegeka.scoaladevalori.ro.taskao;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-
 public class UserProfile {
     public String userEmail;
     public String userName;
 
-    public UserProfile(String title, String desc, String date){
+    public UserProfile(){
     }
 
     public UserProfile(String userName, String userEmail) {

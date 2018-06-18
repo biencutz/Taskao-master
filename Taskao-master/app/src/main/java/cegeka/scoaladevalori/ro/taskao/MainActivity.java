@@ -10,16 +10,22 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity {
 
-    DatabaseReference db;
     private FirebaseAuth firebaseAuth;
+    private FirebaseDatabase firebaseDatabase;
+
     private Button btnAddActivity;
+    private TextView profileName, profileEmail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +33,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         firebaseAuth = FirebaseAuth.getInstance();
+        firebaseDatabase = FirebaseDatabase.getInstance();
 
+        profileName = findViewById(R.id.tvUserNameMain);
+        profileEmail = findViewById(R.id.tvUserEmailMain);
 
         btnAddActivity = findViewById(R.id.btnAddActivityMain);
 
@@ -37,6 +46,25 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, AddActivity.class));
             }
         });
+
+
+
+        DatabaseReference databaseReference = firebaseDatabase.getReference(firebaseAuth.getUid());
+
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                UserProfile userProfile = dataSnapshot.getValue(UserProfile.class);
+                profileName.setText(userProfile.getUserName());
+                profileEmail.setText(userProfile.getUserEmail());
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Toast.makeText(MainActivity.this, databaseError.getCode(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
 
 
     }
