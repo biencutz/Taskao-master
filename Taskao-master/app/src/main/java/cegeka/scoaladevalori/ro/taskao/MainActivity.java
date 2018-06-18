@@ -20,8 +20,6 @@ public class MainActivity extends AppCompatActivity {
     DatabaseReference db;
     private FirebaseAuth firebaseAuth;
     private Button btnAddActivity;
-    //private Button logout;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,10 +37,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, AddActivity.class));
             }
         });
-
-
-
-
 
 
     }
@@ -69,31 +63,4 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
-
-
-    /*
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        switch(item.getItemId()){
-            case R.id.logoutMenu:{
-                firebaseAuth.signOut();
-                finish();
-                startActivity(new Intent(MainActivity.this, LoginActivity.class));
-            }
-            case R.id.profileMenu:
-                startActivity(new Intent(MainActivity.this, ProfileActivity.class));
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-
-    */
 }

@@ -63,16 +63,6 @@ public class AddActivity extends AppCompatActivity {
 
         mUserId = firebaseUser.getUid();
 
-
-
-        // .child("users").child(mUserId).child("items").push().child("title").setValue(text.getText().toString());
-
-
-        //firebaseDatabase = FirebaseDatabase.getInstance();
-
-
-        //DatabaseReference actRef = ref.child("tasks");
-
         btnAddActivityToList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -120,24 +110,12 @@ public class AddActivity extends AppCompatActivity {
                         }
                     });
 
-                    //UserActivities userActivities = new UserActivities(title, desc, date);
-                    //DatabaseReference actRef = ref.child("users");
 
 
                 }
             }
         });
     }
-/*
-    private void addActivity(){
-        String activity_title = titleActivity.getText().toString().trim();
-        String activity_description = descriptionActivity.getText().toString();
-        String activity_date = dateActivity.getText().toString().trim();
-
-        String id = ref.push().getKey();
-    }
-
-*/
 
 
 
@@ -167,184 +145,3 @@ public class AddActivity extends AppCompatActivity {
 
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                /*
-                 btnAddActivityToList.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                if (validate()) {
-                String activity_title = titleActivity.getText().toString().trim();
-                String activity_description = descriptionActivity.getText().toString();
-                String activity_date = dateActivity.getText().toString().trim();
-
-                UserActivities userActivities = new UserActivities(title, desc, date);
-                //DatabaseReference actRef = ref.child("users");
-                DatabaseReference.child()
-                firebaseDatabase.(activity_title, activity_description, activity_date) {
-
-
-                if (task.isSuccessful()) {
-                Map<String, AddActivity> users = new HashMap<>();
-                Toast.makeText(AddActivity.this, "Activity successfully added!", Toast.LENGTH_SHORT).show();
-                finish();
-                startActivity(new Intent(AddActivity.this, MainActivity.class));
-                } else {
-                Toast.makeText(AddActivity.this, "Activity not successfully added!", Toast.LENGTH_SHORT).show();
-                }
-
-
-
-
-
-                /*
-                ArrayList<UserActivities> userActivities=new ArrayList<>();
-                Boolean saved=null;
-                public Boolean save(UserActivities userTask)
-                {
-                if(userTask==null)
-                {
-                saved=false;
-                }else
-                {
-                try
-                {
-                ref.child("UserActivities").push().setValue(userTask);
-                saved=true;
-
-                }catch (DatabaseException e)
-                {
-                e.printStackTrace();
-                saved=false;
-                }
-                }
-
-                private void fetchData(DataSnapshot dataSnapshot)
-                {
-                userActivities.clear();
-
-                for (DataSnapshot ds : dataSnapshot.getChildren())
-                {
-                UserActivities userActivities = ds.getValue(UserActivities.class);
-                userActivities.add(userActivities);
-                }
-                }
-
-                public ArrayList<UserActivities> retrieve() {
-                ref.addChildEventListener(new ChildEventListener() {
-                @Override
-                public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                fetchData(dataSnapshot);
-                }
-
-                @Override
-                public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-                fetchData(dataSnapshot);
-
-                }
-
-                @Override
-                public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-                }
-
-                @Override
-                public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-                }
-
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-
-                }
-                });
-
-                return userActivities;
-                }
-
-
-                firebaseDatabase.(activity_title, activity_description, activity_date) {
-                @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
-
-                if (task.isSuccessful()) {
-                Map<String, AddActivity> users = new HashMap<>();
-                Toast.makeText(AddActivity.this, "Activity successfully added!", Toast.LENGTH_SHORT).show();
-                finish();
-                startActivity(new Intent(RegisterActivity.this, MainActivity.class));
-                } else {
-                Toast.makeText(AddActivity.this, "Activity not successfully added!", Toast.LENGTH_SHORT).show();
-                }
-
-                }
-
-                }
-                }
-                });
-                }
-
-                private Boolean validate() {
-                Boolean result = false;
-
-                title = titleActivity.getText().toString();
-                desc = descriptionActivity.getText().toString();
-                date = dateActivity.getText().toString();
-
-                if (title.isEmpty() || desc.isEmpty() || date.isEmpty()) {
-                Toast.makeText(this, "Please enter all the details!", Toast.LENGTH_SHORT).show();
-                } else {
-                result = true;
-                }
-
-                return result;
-                }
-                 */
-/*
- databaseReference.addValueEventListener(new ValueEventListener() {
-@Override
-public void onDataChange(DataSnapshot dataSnapshot) {
-UserActivities userActivities = dataSnapshot.getValue(UserActivities.class);
-titleActivity.setText("Title: " + userActivities.getUserActivityTitile());
-descriptionActivity.setText("Description: " + userActivities.getUserActivityDescription());
-dateActivity.setText("Date: " + userActivities.getUserActivityDate());
-}
-
-@Override
-public void onCancelled(DatabaseError databaseError) {
-Toast.makeText(AddActivity.this, databaseError.getCode(), Toast.LENGTH_SHORT).show();
-}
-});
- }
-
- private void sendUserData() {
- FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
- DatabaseReference myRef = firebaseDatabase.getReference(firebaseAuth.getUid());
- UserProfile userProfile = new UserProfile(title, desc, date);
- myRef.setValue(userProfile);
- }
-
-
- }
- */
